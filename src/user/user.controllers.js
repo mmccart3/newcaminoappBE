@@ -18,8 +18,8 @@ exports.logIn = async (req, res) => {
     if (req.user) {
       res.status(200).send({ user: req.user });
     } else {
-      const user = await User.findOne({where:{ username: req.body.username }});
-      if (bcrypt.compare(req.body.password, user.passw)) {
+      const user = await User.findOne({where:{ email: req.body.email }});
+      if (bcrypt.compare(req.body.password, user.password)) {
         const token = jwt.sign({ _id: user._id }, process.env.SECRET);
         res.status(200).send({ user, token });
       } else {
@@ -35,9 +35,9 @@ exports.logIn = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    const user = await User.findOne({where:{ username: req.body.username }});
-    if (bcrypt.compare(req.body.passw, user.passw)) {
-      User.destroy({where:{ username: req.body.username }});
+    const user = await User.findOne({where:{ email: req.body.email }});
+    if (bcrypt.compare(req.body.password, user.password)) {
+      User.destroy({where:{ email: req.body.email }});
       res.status(200).send(`user deleted`);
     };
     

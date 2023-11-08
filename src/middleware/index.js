@@ -4,7 +4,7 @@ const User = require("../models/users.js");
 
 exports.hashing = async (req, res, next) => {
   try {
-    req.body.passw = await bcrypt.hash(req.body.passw, 8);
+    req.body.password = await bcrypt.hash(req.body.password, 8);
     next();
   } catch (error) {
     console.log(error);
@@ -15,9 +15,12 @@ exports.hashing = async (req, res, next) => {
 exports.tokenCheck = async (req, res, next) => {
   try {
     const token = req.header("Authorization").replace("Bearer ", "");
+    if (token==="undefined") {
+      throw new Error("Token not provided")
+    }
     const decodeToken = jwt.verify(token, process.env.SECRET);
     req.user = await User.findOne(decodeToken._id);
-    req.user.passw ="";
+    req.user.password ="";
     if (!req.user) {
       throw new Error("User not found");
     }

@@ -10,15 +10,14 @@ const User = sequelize.define('User',{
     },
     username: {
       type: DataTypes.STRING(255),
-      allowNull: false,
-      unique: "username"
+      allowNull: true
     },
     email: {
       type: DataTypes.STRING(255),
       allowNull: false,
       unique: "email"
     },
-    passw: {
+    password: {
       type: DataTypes.STRING(64),
       allowNull: false
     }
@@ -40,14 +39,6 @@ const User = sequelize.define('User',{
         using: "BTREE",
         fields: [
           { name: "ID" },
-        ]
-      },
-      {
-        name: "username",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "username" },
         ]
       },
       {
