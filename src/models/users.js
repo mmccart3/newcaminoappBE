@@ -20,6 +20,14 @@ const User = sequelize.define('User',{
     password: {
       type: DataTypes.STRING(64),
       allowNull: false
+    },
+    firstName: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    lastName: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     tableName: 'users',

@@ -16,14 +16,14 @@ exports.tokenCheck = async (req, res, next) => {
   try {
     const token = req.header("Authorization").replace("Bearer ", "");
     if (token==="undefined") {
-      throw new Error("Token not provided")
-    }
+      console.log ("Token not provided")
+    } else {
     const decodeToken = jwt.verify(token, process.env.SECRET);
     req.user = await User.findOne(decodeToken._id);
     req.user.password ="";
     if (!req.user) {
       throw new Error("User not found");
-    }
+    }}
     next();
   } catch (error) {
     console.log(error);
