@@ -44,8 +44,86 @@ const MapLocationCoords= sequelize.define('MapLocationCoords',{
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    
-
+    TLX1920: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    TLY1920: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRX1920: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRY1920: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    TLX1280: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    TLY1280: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRX1280: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRY1280: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    TLX1024: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    TLY1024: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRX1024: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRY1024: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    TLX640: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    TLY640: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRX640: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRY640: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    TLX360: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    TLY360: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRX360: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    BRY360: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
 },
 {
         tableName: 'mapLocationCoords',
@@ -68,7 +146,5 @@ MapLocationCoords.belongsTo(Location, { as: "locations", foreignKey: "locationID
 Location.hasMany(MapLocationCoords, { as: "MapLocationCoords", foreignKey: "locationID"});
 MapLocationCoords.belongsTo(Stages, { as: "stages", foreignKey: "stageID"});
 Stages.hasMany(MapLocationCoords, { as: "MapLocationCoords", foreignKey: "stageID"});
-// Location.belongsToMany(Stages, { as: "fredlocations", through: MapLocationCoords});
-// Stages.belongsToMany(Location, { as: "georgestages", through: MapLocationCoords });
 
 module.exports = MapLocationCoords;

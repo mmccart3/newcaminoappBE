@@ -70,10 +70,14 @@ exports.getStageDetails = async (req, res) => {
         } else {
             const stageDetails = await sequelize.query(
             `SELECT
-                    stages.ID, altNextStage, altPriorStage, nextStage, priorStage, stageDistanceInMetres, stageElevationChartURL,
-                    stageFinishLocationID, stageMapURL, stageName, stageStartLocationID, stageTimeInMinutes, locationName, longitude, latitude
-            FROM stages, locations
-            WHERE stageStartLocationID = locations.ID`
+            stages.ID, altNextStage, altPriorStage, nextStage, priorStage, stageDistanceInMetres, stageElevationChartURL,
+            stageFinishLocationID, stageMap360URL, stageMap400URL, stageMap640URL, stageMap1024URL, stageMap1280URL, stageMap1920URL,
+            stageName, stageStartLocationID, stageTimeInMinutes,
+            A.locationName AS startLocationName, A.longitude AS startLongitude, A.latitude AS startLatitude,
+            B.locationName AS finishLocationName, B.longitude AS finishLongitude, B.latitude AS finishLatitude
+            FROM stages, locations AS A, locations AS B
+            WHERE stageStartLocationID = A.ID
+            AND stageFinishLocationID = B.ID`
             );
             res.status(200).send({stageDetails});
         }
