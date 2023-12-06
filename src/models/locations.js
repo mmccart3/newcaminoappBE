@@ -35,6 +35,22 @@ const Location= sequelize.define('Location',{
     locationPic4URL: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    priorLoc: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    nextLoc: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    altPriorLoc: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    altNextLoc: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     tableName: 'locations',
